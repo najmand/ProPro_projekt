@@ -96,35 +96,3 @@ void loop() {
   }
 
 }
-
-//void draw() {
-//    if (mySerial.available() > 0 ) {
-//         String value = mySerial.readString();
-//         if ( value != null ) {
-//              output.println( value );
-//         }
-//    }
-//}
-//
-//void keyPressed() {
-//    output.flush();  // Writes the remaining data to the file
-//    output.close();  // Finishes the file
-//    exit();  // Stops the program
-//}
-
-/*
-void setup() {
-  Serial.begin(9600);
-  Serial.begin(9600);  // Používáte správný sériový port?
-}
-
-void loop() {
-  // Testovací posílání hodnoty 100 do grafu s ID 4
-  Serial.print("add 4,0,200");
-  Serial.write(0xff); 
-  Serial.write(0xff); 
-  Serial.write(0xff); 
-
-  delay(1000);  // Posílá každou sekundu
-}
-*/
