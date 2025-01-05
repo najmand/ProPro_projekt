@@ -1,0 +1,80 @@
+@startuml
+' Main class
+class ArduinoProgram {
+    - int potPin
+    - int delayLength
+    + void setup() : void
+    + void loop() : void
+}
+
+class Display {
+    - int width
+    - int height
+    + void updateDisplay(message : String) : void
+}
+
+class Potentiometer {
+    - int value
+    + int readValue() : int
+}
+
+' Subordinate classes and multilayer
+class SerialCommunication {
+    + void sendData(String data) : void
+    + String receiveData() : String
+}
+
+class DisplayElement {
+    - String elementId
+    - String elementType
+    + void updateElement(String data) : void
+}
+
+class Sensor {
+    - String sensorType
+    + int readAnalogValue() : int
+}
+
+class Slider extends DisplayElement {
+    + void setPosition(int value) : void
+}
+
+class Button extends DisplayElement {
+    + void onClick() : void
+}
+
+class TemperatureSensor extends Sensor {
+    + int readTemperature() : int
+}
+
+' Relationships between classes
+ArduinoProgram --> Display : "sends data"
+ArduinoProgram --> Potentiometer : "reads values"
+ArduinoProgram --> SerialCommunication : "manages"
+Display --> DisplayElement : "contains"
+DisplayElement <|-- Slider
+DisplayElement <|-- Button
+Potentiometer --> Sensor : "inherits"
+Sensor <|-- TemperatureSensor
+
+' Notes
+note left of ArduinoProgram
+ArduinoProgram is the main program class.
+It contains basic loops and initialization.
+end note
+
+note right of SerialCommunication
+SerialCommunication is responsible
+for communication between Arduino and other devices.
+end note
+
+note top of Display
+The display contains various elements
+for data visualization.
+end note
+
+note left of TemperatureSensor
+TemperatureSensor is an example of a dedicated sensor,
+that extends the basic functionality of the Sensor class.
+end note
+@enduml
